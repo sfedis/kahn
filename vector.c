@@ -38,7 +38,7 @@ void vector_set(vector *v, int index, void *e) {
 
 void *vector_get(vector *v, int index) {
 	if (index >= v->count) {
-		return;
+		return 0;
 	}
 
 	return v->data[index];
