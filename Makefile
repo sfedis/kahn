@@ -1,15 +1,16 @@
 CC=gcc
 CFLAGS=-fopenmp
 OBJ=kahn
-OBJ2=mmio
+FILES=graph.c mmio.c
+
 
 # Compile without optimizations
 make:
-	$(CC) -o $(OBJ).o $(CFLAGS) $(OBJ).c $(OBJ2).c
+	$(CC) -o $(OBJ).o $(CFLAGS) $(OBJ).c $(FILES)
 
 # Compile using maximum optimizations
 3:
-	$(CC) -o $(OBJ).o $(CFLAGS) $(OBJ).c $(OBJ2).c -O3
+	$(CC) -o $(OBJ).o $(CFLAGS) $(OBJ).c $(FILES) -O3
 
 # Clean the source files
 clean:
