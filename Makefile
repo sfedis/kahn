@@ -1,7 +1,7 @@
 CC=gcc
 CFLAGS=-fopenmp
 OBJ=kahn
-FILES=graph.c mmio.c
+FILES=vector.c graph.c mmio.c
 
 
 # Compile without optimizations
