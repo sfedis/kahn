@@ -4,5 +4,6 @@
 #include "graph.h"
 #include "mmio.h"
 #include "queue.h"
+#include "vector.h"
 
 #endif
