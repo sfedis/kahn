@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-fopenmp
+CFLAGS=-fopenmp -g
 OBJ=kahn
 FILES=vector.c graph.c mmio.c
 
