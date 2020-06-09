@@ -16,6 +16,7 @@ typedef struct Node {
 	int ID;
 	int Degree;
 	vector Vertices;
+	int Processed;
 } node_t, *node_p;
 
 // Function declarations

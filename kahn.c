@@ -51,17 +51,62 @@ int main(int argc, const char *argv[]) {
 		addEdge(vector_get(&nodes, I[i]), vector_get(&nodes, J[i]));
 	}
 
-	
-	for (i = 0; i < 4; i++) {
-		removeEdge(vector_get(&nodes, i), vector_get(&nodes, 4));
-	}
-
 	// Print the graph
-	for (i = 0; i < N; i++) {
-		printNode(vector_get(&nodes, i));
+	// for (i = 0; i < N; i++) {
+	// 	printNode(vector_get(&nodes, i));
+	// }
+
+	// Run the Kahn algorithm
+
+	// Empty list that will contain the sorted elements
+	vector L; 
+	vector_init(&L);
+
+	// Set of pointers to all nodes with no incoming edges
+	vector S;
+	vector_init(&S);
+
+	// Fill S with the nodes without incoming edges
+	for (i = 0; i < vector_count(&nodes); i++) {
+		node_p v = (node_p)vector_get(&nodes, i);
+		if (v->Degree == 0 && v->Processed == 0) {
+			v->Processed = 1;
+			vector_add(&S, v);
+		}
 	}
 
+	while (vector_count(&S)) {
+		// Remove a node n from S
+		node_p n = vector_get(&S, 0);
+		vector_delete(&S, 0);
+		// Add n to tail of L
+		vector_add(&L, n);
 
+		// For each node m with an edge e from n
+		while (vector_count(&n->Vertices)) {
+			node_p m = ((node_p)vector_get(&n->Vertices, 0));
+			// Remove edge e from the graph
+			removeEdge(n, vector_get(&n->Vertices, 0));
+			// If m has no other incoming edges insert m into S
+			if (m->Degree == 0) {
+				m->Processed = 1;
+				vector_add(&S, m);
+			}			
+		}
+	}
 
+	// If graph still has edges
+	for (i = 0; i < N; i++) {
+		if (!((node_p)vector_get(&nodes, i))->Processed) {
+			printf("Could not run algorithm as graph has at least one cycle.");
+			return 128;
+		}
+	}
+
+	printf("\nPrinting the topologically sorted order\n");
+	printf("L:\n");
+	for (i = 0; i < vector_count(&L); i++) {
+		printNode(vector_get(&L, i));
+	}
 	return 0;
 }

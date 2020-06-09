@@ -5,6 +5,7 @@ node_p createNode(int ID) {
 	if (!newNode) { err_exit("Unable to allocate memory for new node"); }
 	newNode->ID = ID;
 	newNode->Degree = 0;
+	newNode->Processed = 0;
 	vector V;
 	vector_init(&V);
 	newNode->Vertices = V;
@@ -12,7 +13,7 @@ node_p createNode(int ID) {
 }
 
 void printNode(node_p node) {
-	printf("ID: %d, Degree: %d, Vertices: ", node->ID, node->Degree);
+	printf("ID: %d, Degree: %d, Processed: %d, Vertices: ", node->ID, node->Degree, node->Processed);
 	for (int i = 0; i < vector_count(&node->Vertices); i++) {
 		printf("%d ", ((node_p)vector_get(&node->Vertices, i))->ID);
 	}
