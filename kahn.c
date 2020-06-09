@@ -59,7 +59,7 @@ int main(int argc, const char *argv[]) {
 	// Run the Kahn algorithm
 
 	// Empty list that will contain the sorted elements
-	vector L; 
+	vector L;
 	vector_init(&L);
 
 	// Set of pointers to all nodes with no incoming edges
@@ -91,7 +91,7 @@ int main(int argc, const char *argv[]) {
 			if (m->Degree == 0) {
 				m->Processed = 1;
 				vector_add(&S, m);
-			}			
+			}
 		}
 	}
 
